@@ -1,5 +1,9 @@
 package poetry
 
+import (
+    "fmt"
+)
+
 // Create some types of our own
 type Line string
 type Stanza []Line
@@ -45,4 +49,23 @@ func (p Poem) Stats() (numVowels, numConsonants, numPuncs int){
         }
     }
     return
+}
+
+// Set String() for Stanza to make it implement Stringer interface
+func (s Stanza) String() string{
+    result := ""
+    for _, l := range s{
+        result += fmt.Sprintf("%s\n",l)
+    }
+    return result
+}
+
+
+// set String() for poem to make it implement Stringer interface
+func (p Poem) String() string{
+    result := ""
+    for _, s := range p{
+        result += fmt.Sprintf("%s\n", s)
+    }
+    return result
 }
